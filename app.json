@@ -1,0 +1,27 @@
+{
+  "id": "0abc2bf5-18c8-49fa-866c-31a03c105b62",
+  "name": "ALProject4",
+   "publisher": "Default publisher",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "14.0.0.0",
+  "application": "14.0.0.0",
+  "idRanges": [
+    {
+      "from": 50100,
+      "to": 99999
+    }
+  ],
+  "contextSensitiveHelpUrl": "https://ALProject4.com/help/",
+  "showMyCode": true,
+  "target": "Extension",
+    "runtime": "3.0"
+}
