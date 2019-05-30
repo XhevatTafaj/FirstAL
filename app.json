@@ -1,8 +1,8 @@
 {
   "id": "0abc2bf5-18c8-49fa-866c-31a03c105b62",
-  "name": "ALProject4",
-   "publisher": "Default publisher",
-  "version": "1.0.0.0",
+  "name": "FirstALProject",
+   "publisher": "Xhevat Tafaj",
+  "version": "1.0.0.1",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -20,7 +20,7 @@
       "to": 99999
     }
   ],
-  "contextSensitiveHelpUrl": "https://ALProject4.com/help/",
+  "contextSensitiveHelpUrl": "https://FirstALProject.com/help/",
   "showMyCode": true,
   "target": "Extension",
   "runtime": "3.0"
