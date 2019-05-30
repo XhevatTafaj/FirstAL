@@ -38,5 +38,5 @@ page 50100 TestExcel
     }
 
     var
-        myInt: Integer;
+        //myInt: Integer;
 }

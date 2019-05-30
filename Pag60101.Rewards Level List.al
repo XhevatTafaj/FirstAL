@@ -29,7 +29,7 @@ page 60101 "Rewards Level List"
     trigger OnOpenPage();
     begin
 
-        if (not CustomerRewardsExtMgt.IsCustomerRewardsActivated) then
+        if (not CustomerRewardsExtMgt.IsCustomerRewardsActivated()) then
             Error(NotActivatedTxt);
     end;
 

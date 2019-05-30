@@ -29,5 +29,5 @@ pageextension 50100 CurrencyListExt extends Currencies
 
 
     var
-        myInt: Integer;
+    //myInt: Integer;
 }

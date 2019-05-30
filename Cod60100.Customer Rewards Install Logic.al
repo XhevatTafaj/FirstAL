@@ -5,17 +5,17 @@ codeunit 60100 "Customer Rewards Install Logic"
 
     trigger OnInstallAppPerCompany();
     begin
-        SetDefaultCustomerRewardsExtMgtCodeunit;
+        SetDefaultCustomerRewardsExtMgtCodeunit();
     end;
 
     procedure SetDefaultCustomerRewardsExtMgtCodeunit();
     var
         CustomerRewardsExtMgtSetup: Record "Customer Rewards Mgt. Setup";
     begin
-        CustomerRewardsExtMgtSetup.DeleteAll;
-        CustomerRewardsExtMgtSetup.Init;
+        CustomerRewardsExtMgtSetup.DeleteAll();
+        CustomerRewardsExtMgtSetup.Init();
         // Default Customer Rewards Ext. Mgt codeunit to use for handling events  
         CustomerRewardsExtMgtSetup."Customer Rewards Ext. Mgt. Codeunit ID" := Codeunit::"Customer Rewards Ext. Mgt.";
-        CustomerRewardsExtMgtSetup.Insert;
+        CustomerRewardsExtMgtSetup.Insert();
     end;
 }

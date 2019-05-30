@@ -18,5 +18,5 @@ pageextension 50101 PurchaseOrderSubformExt extends "Purchase Order Subform"
     }
 
     var
-        myInt: Integer;
+        //myInt: Integer;
 }

@@ -11,12 +11,12 @@ table 60100 "Reward Level"
 
             trigger OnValidate(); 
             var 
-                tempPoints: Integer; 
-                RewardLevel: Record "Reward Level"; 
+                RewardLevel: Record "Reward Level";
+                tempPoints: Integer;    
             begin 
                 tempPoints := "Minimum Reward Points"; 
                 RewardLevel.SetRange("Minimum Reward Points", tempPoints); 
-                if RewardLevel.FindFirst then 
+                if RewardLevel.FindFirst() then 
                     Error('Minimum Reward Points must be unique'); 
             end; 
         } 

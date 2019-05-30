@@ -16,7 +16,7 @@ page 60100 "Customer Rewards Wizard"
                 Editable = false;
                 Visible = TopBannerVisible;
 
-                field("MediaResourcesStandard.""Media Reference"""; MediaResourcesStandard."Media Reference")
+                field("MediaResourcesStandard.Media Reference"; MediaResourcesStandard."Media Reference")
                 {
                     ApplicationArea = All;
                     Editable = false;
@@ -75,7 +75,7 @@ page 60100 "Customer Rewards Wizard"
 
                             trigger OnValidate();
                             begin
-                                ShowFirstPage;
+                                ShowFirstPage();
                             end;
                         }
                     }
@@ -207,7 +207,7 @@ page 60100 "Customer Rewards Wizard"
 
                 trigger OnAction();
                 begin
-                    FinishAndEnableCustomerRewards
+                    FinishAndEnableCustomerRewards()
                 end;
             }
         }
@@ -215,28 +215,28 @@ page 60100 "Customer Rewards Wizard"
 
     trigger OnInit();
     begin
-        LoadTopBanners;
+        LoadTopBanners();
     end;
 
     trigger OnOpenPage();
     begin
         Step := Step::First;
-        EnableControls;
+        EnableControls();
     end;
 
     local procedure EnableControls();
     begin
-        ResetControls;
+        ResetControls();
 
         case Step of
             Step::First:
-                ShowFirstPage;
+                ShowFirstPage();
 
             Step::Second:
-                ShowSecondPage;
+                ShowSecondPage();
 
             Step::Finish:
-                ShowFinalPage;
+                ShowFinalPage();
         END;
     end;
 
@@ -246,15 +246,15 @@ page 60100 "Customer Rewards Wizard"
             Step := Step - 1
         ELSE
             Step := Step + 1;
-        EnableControls;
+        EnableControls();
     end;
 
     local procedure FinishAndEnableCustomerRewards();
     var
         CustomerRewardsExtMgt: Codeunit "Customer Rewards Ext. Mgt.";
     begin
-        CurrPage.Close;
-        CustomerRewardsExtMgt.OpenRewardsLevelPage;
+        CurrPage.Close();
+        CustomerRewardsExtMgt.OpenRewardsLevelPage();
     end;
 
     local procedure ShowFirstPage();
@@ -298,11 +298,11 @@ page 60100 "Customer Rewards Wizard"
 
     local procedure LoadTopBanners();
     begin
-        if MediaRepositoryStandard.GET('AssistedSetup-NoText-400px.png', FORMAT(CURRENTCLIENTTYPE))
+        if MediaRepositoryStandard.GET('AssistedSetup-NoText-400px.png', FORMAT(CURRENTCLIENTTYPE()))
       then
             if MediaResourcesStandard.GET(MediaRepositoryStandard."Media Resources Ref")
         then
-                TopBannerVisible := MediaResourcesStandard."Media Reference".HASVALUE;
+                TopBannerVisible := MediaResourcesStandard."Media Reference".HASVALUE();
     end;
 
     var

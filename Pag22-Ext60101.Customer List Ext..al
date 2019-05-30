@@ -16,10 +16,10 @@ pageextension 60101 "Customer List Ext." extends "Customer List"
 
                 trigger OnAction();
                 begin
-                    if CustomerRewardsExtMgt.IsCustomerRewardsActivated then
-                        CustomerRewardsExtMgt.OpenRewardsLevelPage
+                    if CustomerRewardsExtMgt.IsCustomerRewardsActivated() then
+                        CustomerRewardsExtMgt.OpenRewardsLevelPage()
                     else
-                        CustomerRewardsExtMgt.OpenCustomerRewardsWizard;
+                        CustomerRewardsExtMgt.OpenCustomerRewardsWizard();
                 end;
             }
         }

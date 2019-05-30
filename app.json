@@ -23,5 +23,5 @@
   "contextSensitiveHelpUrl": "https://ALProject4.com/help/",
   "showMyCode": true,
   "target": "Extension",
-    "runtime": "3.0"
+  "runtime": "3.0"
 }

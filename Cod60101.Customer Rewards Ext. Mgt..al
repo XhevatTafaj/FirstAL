@@ -9,10 +9,10 @@ codeunit 60101 "Customer Rewards Ext. Mgt."
     var
         ActivationCodeInfo: Record "Activation Code Information";
     begin
-        if not ActivationCodeInfo.FindFirst then
+        if not ActivationCodeInfo.FindFirst() then
             exit(false);
 
-        if (ActivationCodeInfo."Date Activated" <= Today) and (Today <= ActivationCodeInfo."Expiration Date") then
+        if (ActivationCodeInfo."Date Activated" <= Today()) and (Today() <= ActivationCodeInfo."Expiration Date") then
             exit(true);
         exit(false);
     end;
@@ -22,7 +22,7 @@ codeunit 60101 "Customer Rewards Ext. Mgt."
     var
         CustomerRewardsWizard: Page "Customer Rewards Wizard";
     begin
-        CustomerRewardsWizard.RunModal;
+        CustomerRewardsWizard.RunModal();
     end;
 
     // Opens the Reward Level page 
@@ -30,7 +30,7 @@ codeunit 60101 "Customer Rewards Ext. Mgt."
     var
         RewardsLevelPage: Page "Rewards Level List";
     begin
-        RewardsLevelPage.Run;
+        RewardsLevelPage.Run();
     end;
 
     // Determines the correponding reward level and returns it 
@@ -41,20 +41,20 @@ codeunit 60101 "Customer Rewards Ext. Mgt."
     begin
         RewardLevelTxt := NoRewardlevelTxt;
 
-        if RewardLevelRec.IsEmpty then
+        if RewardLevelRec.IsEmpty() then
             exit;
         RewardLevelRec.SetRange("Minimum Reward Points", 0, RewardPoints);
         RewardLevelRec.SetCurrentKey("Minimum Reward Points"); // sorted in ascending order 
 
-        if not RewardLevelRec.FindFirst then
+        if not RewardLevelRec.FindFirst() then
             exit;
         MinRewardLevelPoints := RewardLevelRec."Minimum Reward Points";
 
         if RewardPoints >= MinRewardLevelPoints then begin
-            RewardLevelRec.Reset;
+            RewardLevelRec.Reset();
             RewardLevelRec.SetRange("Minimum Reward Points", MinRewardLevelPoints, RewardPoints);
             RewardLevelRec.SetCurrentKey("Minimum Reward Points"); // sorted in ascending order 
-            RewardLevelRec.FindLast;
+            RewardLevelRec.FindLast();
             RewardLevelTxt := RewardLevelRec.Level;
         end;
     end;
@@ -77,32 +77,32 @@ codeunit 60101 "Customer Rewards Ext. Mgt."
 
     // Subscribes to OnGetActivationCodeStatusFromServer event and handles it when the event is raised 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Customer Rewards Ext. Mgt.", 'OnGetActivationCodeStatusFromServer', '', false, false)]
-    local procedure OnGetActivationCodeStatusFromServerSubscriber(ActivationCode: Text);
+    local procedure OnGetActivationCodeStatusFromServerSubscriber(ActivationCode: Text[14]);
     var
         ActivationCodeInfo: Record "Activation Code Information";
         ResponseText: Text;
         Result: JsonToken;
         JsonRepsonse: JsonToken;
     begin
-        if not CanHandle then
+        if not CanHandle() then
             exit; // use the mock 
 
         // Get response from external service and update activation code information if successful 
         if (GetHttpResponse(ActivationCode, ResponseText)) then begin
             JsonRepsonse.ReadFrom(ResponseText);
 
-            if (JsonRepsonse.SelectToken('ActivationResponse', Result)) then begin
+            if (JsonRepsonse.SelectToken('ActivationResponse', Result)) then BEGIN
 
                 if (Result.AsValue().AsText() = 'Success') then begin
 
                     if (ActivationCodeInfo.FindFirst()) then
-                        ActivationCodeInfo.Delete;
+                        ActivationCodeInfo.Delete();
 
-                    ActivationCodeInfo.Init;
+                    ActivationCodeInfo.Init();
                     ActivationCodeInfo.ActivationCode := ActivationCode;
-                    ActivationCodeInfo."Date Activated" := Today;
-                    ActivationCodeInfo."Expiration Date" := CALCDATE('<1Y>', Today);
-                    ActivationCodeInfo.Insert;
+                    ActivationCodeInfo."Date Activated" := Today();
+                    ActivationCodeInfo."Expiration Date" := CALCDATE('<1Y>', Today());
+                    ActivationCodeInfo.Insert();
 
                 end;
             end;
@@ -132,7 +132,7 @@ codeunit 60101 "Customer Rewards Ext. Mgt."
 
         Customer.Get(SalesHeader."Sell-to Customer No.");
         Customer.RewardPoints += 1; // Add a point for each new sales order 
-        Customer.Modify;
+        Customer.Modify();
     end;
 
     // Checks if the current codeunit is allowed to handle Customer Rewards Activation requests rather than a mock. 
@@ -140,7 +140,7 @@ codeunit 60101 "Customer Rewards Ext. Mgt."
     var
         CustomerRewardsExtMgtSetup: Record "Customer Rewards Mgt. Setup";
     begin
-        if CustomerRewardsExtMgtSetup.Get then
+        if CustomerRewardsExtMgtSetup.Get() then
             exit(CustomerRewardsExtMgtSetup."Customer Rewards Ext. Mgt. Codeunit ID" = CODEUNIT::"Customer Rewards Ext. Mgt.");
         exit(false);
     end;

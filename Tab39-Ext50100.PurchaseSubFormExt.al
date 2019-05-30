@@ -11,5 +11,5 @@ tableextension 50100 PurchaseSubFormExt extends "Purchase Line"
     }
 
     var
-        myInt: Integer;
+        //myInt: Integer;
 }

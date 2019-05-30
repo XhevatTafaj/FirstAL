@@ -3,7 +3,7 @@ Codeunit 50100 CreateAndOpenExcelOnExtension
     procedure CreateExcelHeader()
     var
     begin
-        ExcelBufferTemp.RESET;
+        ExcelBufferTemp.RESET();
         ExcelBufferTemp.DeleteAll();
         ExcelBufferTemp.SetCurrent(ExcelBufferTemp."Row No." + 2, 2);
         ExcelBufferTemp.AddColumn(FORMAT('T.H1y'), FALSE, '', TRUE, FALSE, FALSE, '', ExcelBufferTemp."Cell Type"::Text);
@@ -28,10 +28,10 @@ Codeunit 50100 CreateAndOpenExcelOnExtension
     begin
         ExcelBufferTemp.SetFriendlyFilename('Sales Book');
         ExcelBufferTemp.CreateNewBook('Sheet1');
-        ExcelBufferTemp.WriteSheet('', COMPANYNAME, USERID);
-        ExcelBufferTemp.CloseBook;
-        ExcelBufferTemp.OpenExcel;
-        ExcelBufferTemp.DELETEALL;
+        ExcelBufferTemp.WriteSheet('', COMPANYNAME(), USERID());
+        ExcelBufferTemp.CloseBook();
+        ExcelBufferTemp.OpenExcel();
+        ExcelBufferTemp.DELETEALL();
     end;
 
     var
