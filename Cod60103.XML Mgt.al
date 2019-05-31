@@ -7,6 +7,7 @@ codeunit 60103 "XML Mgt."
         IF Doc.SelectSingleNode('//glAccountTable', Node1) THEN begin
             NodeList := Node1.AsXmlElement().GetChildElements();
             MESSAGE('Number of elemens: %1, Node Name: %2', NodeList.COUNT());
+
         END;
     end;
 
