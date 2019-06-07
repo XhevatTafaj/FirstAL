@@ -8,8 +8,8 @@
             "server": "http://localhost",
             "serverInstance": "BC140",
             "authentication": "Windows",
-            "startupObjectId": 60103,
-            "startupObjectType": "Page",
+            "startupObjectId": 18,
+            "startupObjectType": "Table",
             "breakOnError": true,
             "launchBrowser": true,
             "schemaUpdateMode":"Synchronize"
