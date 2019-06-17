@@ -1,0 +1,10 @@
+//POST http://smdhysa03:7048/BC140/ODataV4/Company('CRONUS%20IT')/MyCustomerCardWS('10000')/NAV.CloneCustomer
+//Content-Type: application/x-www-form-urlencoded
+//Authorization: Basic admin 7s3kQ/6plk30JfIEE3DRnhAx+659oam7b4QsHnJ+p9w=
+
+POST http://smdhysa03:7048/BC140/ODataV4/Company('CRONUS%20IT')/MyCustomerCardWS('10000')/NAV.GetSalesAmount
+Content-Type: application/json
+Authorization: Basic admin 7s3kQ/6plk30JfIEE3DRnhAx+659oam7b4QsHnJ+p9w=
+{
+    customerno
+}
